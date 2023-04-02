@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@nuxtjs/tailwindcss": "^6.6.5",
+    "openai": "^3.2.1",
     "ynab": "^1.47.0"
   }
 }

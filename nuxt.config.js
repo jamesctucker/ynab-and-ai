@@ -2,6 +2,7 @@
 export default defineNuxtConfig({
   modules: ["@nuxtjs/tailwindcss"],
   runtimeConfig: {
-    ynabAccessToken: process.env.NUXT_YNAB_ACCESS_TOKEN, // can be overridden by NUXT_API_SECRET environment variable
+    ynabAccessToken: process.env.NUXT_YNAB_ACCESS_TOKEN,
+    openAIKey: process.env.NUXT_OPEN_AI_KEY,
   },
 });
