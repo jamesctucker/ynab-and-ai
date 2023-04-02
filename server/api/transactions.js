@@ -1,13 +1,16 @@
-import ynab from "ynab";
-
-const accessToken = useRuntimeConfig().ynabAccessToken;
-const ynabAPI = new ynab.API(accessToken);
+import ynabAPI from "../../lib/ynab/ynab.js";
 
 export default defineEventHandler(async (event) => {
-  const budgetsResponse = await ynabAPI.budgets.getBudgets();
-  const budgets = budgetsResponse.data.budgets;
+  const budgetId = "last-used";
+  const sinceDate = "2023-03-28";
+
+  const response = await ynabAPI.transactions.getTransactions(
+    budgetId,
+    sinceDate
+  );
+  const transactions = response.data.transactions;
 
   return {
-    budget: budgets[0],
+    transactions: transactions,
   };
 });
