@@ -1,42 +1,9 @@
-# Nuxt 3 Minimal Starter
+# YNAB + AI
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+Just having fun with GPT-4. Had an idea about feeding my YNAB data (without sensitive financial institution account info, of course) into GPT-4 and asking the model various questions about my finances. Questions like:
 
-## Setup
+- Based on my previous transaction history, do you see anything out of the ordinary?
+- Based on these financial goals, what are some actions I could take to meet them?
+- ...
 
-Make sure to install the dependencies:
-
-```bash
-# yarn
-yarn install
-
-# npm
-npm install
-
-# pnpm
-pnpm install
-```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`
-
-```bash
-npm run dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-npm run build
-```
-
-Locally preview production build:
-
-```bash
-npm run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+Decided to build this with Nuxt3.
