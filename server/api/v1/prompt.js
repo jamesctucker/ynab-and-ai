@@ -9,8 +9,6 @@ export default defineEventHandler(async (event) => {
     messages: [{ role: "user", content: prompt }],
   });
 
-  console.log(completion.data.choices[0].message);
-
   return {
     completion: completion.data.choices[0].message.content,
   };
