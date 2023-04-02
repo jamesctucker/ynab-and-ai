@@ -3,12 +3,24 @@ import { ref } from "vue";
 
 const since = ref(null);
 const transactions = ref([]);
+const prompt = ref(null);
+const completion = ref(null);
 
-const handleClick = async () => {
-  const response = await $fetch(`/api/transactions?since=${since.value}`);
+const handleGetTransactions = async () => {
+  const response = await $fetch(`/api/v1/transactions?since=${since.value}`);
 
   transactions.value = await response.transactions;
   since.value = null;
+};
+
+const handleSubmitPrompt = async () => {
+  const response = await $fetch("/api/v1/prompt", {
+    method: "POST",
+    body: JSON.stringify({ prompt: prompt.value }),
+  });
+
+  completion.value = await response.completion;
+  prompt.value = null;
 };
 </script>
 
@@ -65,10 +77,38 @@ const handleClick = async () => {
     <!-- load transactions button -->
     <button
       class="bg-indigo-800 hover:bg-indigo-500 text-white font-bold py-2 px-4 rounded-sm focus:outline-none focus:shadow-outline"
-      @click="handleClick"
+      @click="handleGetTransactions"
       :disabled="!since"
     >
       Load Transactions
     </button>
+
+    <!-- light gray divider -->
+    <div class="my-8 border-t border-gray-200"></div>
+
+    <!-- textarea -->
+    <div v-if="transactions?.length > 0" class="flex flex-col space-y-4">
+      <label for="text" class="font-semibold">Ask GPT-4</label>
+
+      <!-- prompt response -->
+      <div v-if="completion" class="p-4 bg-gray-100 rounded-sm">
+        <p class="text-gray-600">{{ completion }}</p>
+      </div>
+
+      <textarea
+        v-model="prompt"
+        id="text"
+        class="p-2 border border-gray-400 rounded-sm"
+        name="text"
+        rows="5"
+      />
+      <button
+        class="bg-indigo-800 hover:bg-indigo-500 text-white font-bold py-2 px-4 rounded-sm focus:outline-none focus:shadow-outline"
+        :disabled="!prompt"
+        @click="handleSubmitPrompt"
+      >
+        Submit
+      </button>
+    </div>
   </div>
 </template>

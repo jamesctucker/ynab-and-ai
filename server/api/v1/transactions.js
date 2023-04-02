@@ -1,4 +1,4 @@
-import ynabAPI from "../../lib/ynab/ynab.js";
+import ynabAPI from "../../../lib/ynab/ynab.js";
 
 export default defineEventHandler(async (event) => {
   const budgetId = "last-used";
