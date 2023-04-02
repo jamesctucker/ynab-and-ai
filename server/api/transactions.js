@@ -2,7 +2,8 @@ import ynabAPI from "../../lib/ynab/ynab.js";
 
 export default defineEventHandler(async (event) => {
   const budgetId = "last-used";
-  const sinceDate = "2023-03-28";
+  const query = getQuery(event);
+  const sinceDate = query.since;
 
   const response = await ynabAPI.transactions.getTransactions(
     budgetId,
